@@ -1,11 +1,67 @@
-// P3.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
+/************************************************************************************************************
+*** NAME : 			Tite Divava	& Anirudh Dhoundiyal													  ***
+*** CLASS : 		CSc 456													                        	  ***
+*** ASSIGNMENT : 	Assignement 3																		  ***
+*** DUE DATE : 		11/22/2020													   						  ***
+*** INSTRUCTOR :    Kwanghee Won						                                                  ***
+***                                                                                                       ***
+*************************************************************************************************************
+*** DESCRIPTION :  	In this assignement, The program 													  ***
+************************************************************************************************************/
 #include <iostream>
 
 int main()
 {
     std::cout << "Hello World!\n";
+}
+/******************************************************************************
+*** FUNCTION < memoryManager >  								  			***
+*******************************************************************************
+*** DESCRIPTION : <	This function simulates creation and initialization of a ** 
+                    physical memory space consisting of frames >         	***
+*** INPUT ARGS :  < int memeSize, int frameSize > 							***
+*** OUTPUT ARGS : < None > 													***
+*** IN/OUT ARGS : < None >			 										***
+*** RETURN : 	  < None > 													***
+******************************************************************************/
+void memoryManager(int memSize, int frameSize) {
+    // initializing each frame with a value of 0
+    int frame = 0;
+
+
+}
+/******************************************************************************
+*** FUNCTION < allocate >  								  			        ***
+*******************************************************************************
+*** DESCRIPTION : <	This function allocates a chunk of memory space to      ***
+***               <    a process, a set of pages are allocated to a process ***
+***               <    which are then mapped to available free frames >     ***
+*** INPUT ARGS :  < int allocSize, int pid >    							***
+*** OUTPUT ARGS : < None > 													***
+*** IN/OUT ARGS : < None >			 										***
+*** RETURN : 	  < int > 													***
+******************************************************************************/
+int allocate(int allocSize, int pid) {
+
+    return 0;
+}
+
+/******************************************************************************
+*** FUNCTION < allocate >  								  			        ***
+*******************************************************************************
+*** DESCRIPTION : <	This function allocates a chunk of memory space to      ***
+***               <    a process, a set of pages are allocated to a process ***
+***               <    which are then mapped to available free frames >     ***
+*** INPUT ARGS :  < int allocSize, int pid >    							***
+*** OUTPUT ARGS : < None > 													***
+*** IN/OUT ARGS : < None >			 										***
+*** RETURN : 	  < int > 													***
+******************************************************************************/
+int allocate(int allocSize, int pid) {
+
+    // the return is 1 if a requested memory space has been successfull
+    return 1;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

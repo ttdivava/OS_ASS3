@@ -12,7 +12,7 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Git is Hard as a rock!!!!\n";
 }
 /******************************************************************************
 *** FUNCTION < memoryManager >  								  			***

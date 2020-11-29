@@ -1,4 +1,4 @@
-
+﻿
 /************************************************************************************************************
 *** NAME : 			Tite Divava	& Anirudh Dhoundiyal													  ***
 *** CLASS : 		CSc 456																			  	  ***
@@ -59,6 +59,7 @@ void memoryManager(int memSize, int frameSize) {
 
 
 }
+
 /******************************************************************************
 *** FUNCTION < allocate >  								  			        ***
 *******************************************************************************
@@ -72,5 +73,7 @@ void memoryManager(int memSize, int frameSize) {
 ******************************************************************************/
 int allocate(int allocSize, int pid) {
 
-    return 0;
+    // the return is 1 if a requested memory space has been successfully  allocated 
+    // if not it returns -1
+    return 1;
 }

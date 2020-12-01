@@ -26,6 +26,12 @@ int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory();
 void menu();
+void runner();
+
+//global variables
+string buffer;
+vector<string> usr_command;
+
 
 int main()
 {
@@ -39,7 +45,7 @@ void menu(){
     cout << "*********************";
     cout << "List of the command is as following";
     cout << "**********************" << endl;
-    //fix this line
+    //menu display
     cout << "1. M memorySize frameSize" 
          << endl << "2. A sizepid" 
          << endl << "3. W" 
@@ -47,12 +53,22 @@ void menu(){
          << endl << "5. D" 
          << endl << "6. P" 
          << endl << "7. exit";
-    
-    cout << endl << "Please enter the command:" ;
-    getline(cin, usr_input);
+    while (usr_input != "exit") {
+        cout << endl << "Please enter the command:";
+        getline(cin, usr_input);
+        stringstream temp(usr_input);
+        usr_command.clear();
+        while (temp >> buffer) {
+            usr_command.push_back(buffer);
+        }
+        runner();
+    }
+    exit(0);
+}
 
-
-
+void runner()
+{
+   
 
 }
 

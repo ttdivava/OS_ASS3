@@ -26,7 +26,7 @@ int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory();
 void menu(string& usr_input, vector<string>& usr_command);
-void runner(vector<string>& usr_command, vector<int>& freeFrameList);
+void runner(vector<string>& usr_command, vector<int>& freeFrameList,int  init_size, int alloc_size);
 
 //global variables
 string buffer;
@@ -44,11 +44,9 @@ int main()
 
     while (usr_input != "exit") {
         menu(usr_input, usr_command);
-        runner(usr_command, freeFrameList);
+        runner(usr_command, freeFrameList, init_size, alloc_size);
     }
-    
 
-    
 }
 
 void menu(string& usr_input, vector<string> &usr_command){
@@ -73,13 +71,34 @@ void menu(string& usr_input, vector<string> &usr_command){
     }
 }
 
-void runner(vector<string>& usr_command, vector<int>& freeFrameList)
+void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_size, int& alloc_size)
 {
     char tempchar = usr_command[0][0];
     cout << tempchar;
-    switch (tempchar)
-    {
+    switch (tempchar){
+
+    case 'M':
+        init_size = stoi(usr_command[1]);
+        memoryManager(init_size, FRAMESIZE, freeFrameList);
+        break;
+    case 'A':
+        alloc_size = stoi(usr_command[1]);
+        int a = allocate(alloc_size, stoi(usr_command[2]));
+        break;
+    case 'W':
+        int w = write(stoi(usr_command[1]), stoi(usr_command[2]));
+        break;
+    case 'R':
+        int r = read(stoi(usr_command[1]), stoi(usr_command[2]));
+        break;
+    case 'D':
+        int d = deallocate(stoi(usr_command[1]));
+        break;
+    case 'P':
+        printMemory;
+        break;
     default:
+        cout << "Invalid commands" << endl;
         break;
     }
 

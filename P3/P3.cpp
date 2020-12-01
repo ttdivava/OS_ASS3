@@ -25,23 +25,34 @@ int deallocate(int pid);
 int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory();
-void menu();
+void menu(string& usr_input, vector<string>& usr_command);
 void runner();
 
 //global variables
 string buffer;
-vector<string> usr_command;
+const int FRAMESIZE = 1;
+char* memory;
 
 
 int main()
 {
-    menu();
+    string usr_input = " ";
+    int init_size;
+    int alloc_size;
+    vector<string> usr_command;
+    vector<int>freeFrameList;
+
+    while (usr_input != "exit") {
+        menu(usr_input, usr_command);
+        runner();
+    }
+    
 
     
 }
 
-void menu(){
-    string usr_input = " ";
+void menu(string& usr_input, vector<string> &usr_command){
+    
     cout << "*********************";
     cout << "List of the command is as following";
     cout << "**********************" << endl;
@@ -53,17 +64,13 @@ void menu(){
          << endl << "5. D" 
          << endl << "6. P" 
          << endl << "7. exit";
-    while (usr_input != "exit") {
-        cout << endl << "Please enter the command:";
-        getline(cin, usr_input);
-        stringstream temp(usr_input);
-        usr_command.clear();
-        while (temp >> buffer) {
-            usr_command.push_back(buffer);
-        }
-        runner();
+    cout << endl << "Please enter the command:";
+    getline(cin, usr_input);
+    stringstream temp(usr_input);
+    usr_command.clear();
+    while (temp >> buffer) {
+        usr_command.push_back(buffer);
     }
-    exit(0);
 }
 
 void runner()

@@ -30,8 +30,9 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList,int & init_s
 
 //global variables
 string buffer;
-const int FRAMESIZE = 1;
 char* memory;
+const int FRAMESIZE = 1;
+
 
 
 int main()
@@ -115,9 +116,19 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
 *** IN/OUT ARGS : < None >			 										***
 *** RETURN : 	  < None > 													***
 ******************************************************************************/
-void memoryManager(int memSize, int frameSize) {
-    // initializing each frame with a value of 0
-    int frame = 0;
+void memoryManager(int memSize, int frameSize, vector<int>& freeFrameList) {
+    memory = new char[memSize];
+    if (!memory)
+    {
+        cout << "Memory not allocated." << endl << "Trying again..." << endl;
+        memory = new char[memSize];
+        if (!memory) {
+            cout << "Memory allocationg has failed!";
+                exit(1);
+        }
+
+    }
+
 
 
 }

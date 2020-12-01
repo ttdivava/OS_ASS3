@@ -16,8 +16,15 @@
 #include <algorithm>
 #include <string>
 #include <sstream>
-using memoryManager std;
+using namespace std;
 
+//Prototypes of functions:
+void memoryManager(int memSize, int frameSize);
+int allocate(int allocSize, int pid);
+int deallocate(int pid);
+int write(int pid, int logical_address);
+int read(int pid, int logical_address);
+void printMemory();
 void menu();
 
 int main()
@@ -27,8 +34,7 @@ int main()
     
 }
 
-menu()
-{
+menu(){
     string usr_input = " ";
     cout << "**************************";
     cout << "List of the command is as following:";
@@ -38,6 +44,8 @@ menu()
     
     cout << endl << "Please enter the command:" << endl;
     getline(cin, input);
+
+
 
 
 }
@@ -76,4 +84,23 @@ int allocate(int allocSize, int pid) {
     // the return is 1 if a requested memory space has been successfully  allocated 
     // if not it returns -1
     return 1;
+}
+
+int deallocate(int pid)
+{
+    return 0;
+}
+
+int write(int pid, int logical_address)
+{
+    return 0;
+}
+
+int read(int pid, int logical_address)
+{
+    return 0;
+}
+
+void printMemory()
+{
 }

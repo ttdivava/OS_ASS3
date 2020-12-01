@@ -19,14 +19,14 @@
 using namespace std;
 
 //Prototypes of functions:
-void memoryManager(int memSize, int frameSize);
+void memoryManager(int memSize, int frameSize, vector<int>& freeFrameList);
 int allocate(int allocSize, int pid);
 int deallocate(int pid);
 int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory();
 void menu(string& usr_input, vector<string>& usr_command);
-void runner(vector<string>& usr_command, vector<int>& freeFrameList,int  init_size, int alloc_size);
+void runner(vector<string>& usr_command, vector<int>& freeFrameList,int & init_size, int & alloc_size);
 
 //global variables
 string buffer;
@@ -37,8 +37,8 @@ char* memory;
 int main()
 {
     string usr_input = " ";
-    int init_size;
-    int alloc_size;
+    int init_size = 0;
+    int alloc_size = 0;
     vector<string> usr_command;
     vector<int>freeFrameList;
 

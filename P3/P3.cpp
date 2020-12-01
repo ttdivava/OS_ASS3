@@ -34,16 +34,22 @@ int main()
     
 }
 
-menu(){
+void menu(){
     string usr_input = " ";
-    cout << "**************************";
-    cout << "List of the command is as following:";
-    cout << "***************************" << endl;
+    cout << "*********************";
+    cout << "List of the command is as following";
+    cout << "**********************" << endl;
     //fix this line
-    cout << "M memorySize frameSize" << endl << "A sizepid" << endl << "W" << endl << endl << "R" << endl << endl << "D" << endl << endl << "P" << endl << "exit" << endl;
+    cout << "1. M memorySize frameSize" 
+         << endl << "2. A sizepid" 
+         << endl << "3. W" 
+         << endl << "4. R" 
+         << endl << "5. D" 
+         << endl << "6. P" 
+         << endl << "7. exit";
     
-    cout << endl << "Please enter the command:" << endl;
-    getline(cin, input);
+    cout << endl << "Please enter the command:" ;
+    getline(cin, usr_input);
 
 
 

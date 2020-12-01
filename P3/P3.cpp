@@ -3,7 +3,7 @@
 *** NAME : 			Tite Divava	& Anirudh Dhoundiyal													  ***
 *** CLASS : 		CSc 456																			  	  ***
 *** ASSIGNMENT : 	Assignement 3																		  ***
-*** DUE DATE : 		11/22/2020													   						  ***
+*** DUE DATE : 		11/25/2020													   						  ***
 *** INSTRUCTOR :    Kwanghee Won																		  ***
 *************************************************************************************************************
 *** DESCRIPTION :  	In this assignement, The program 													  ***

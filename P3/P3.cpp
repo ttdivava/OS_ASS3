@@ -26,7 +26,7 @@ int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory();
 void menu(string& usr_input, vector<string>& usr_command);
-void runner();
+void runner(vector<string>& usr_command, vector<int>& freeFrameList);
 
 //global variables
 string buffer;
@@ -44,7 +44,7 @@ int main()
 
     while (usr_input != "exit") {
         menu(usr_input, usr_command);
-        runner();
+        runner(usr_command, freeFrameList);
     }
     
 
@@ -73,9 +73,15 @@ void menu(string& usr_input, vector<string> &usr_command){
     }
 }
 
-void runner()
+void runner(vector<string>& usr_command, vector<int>& freeFrameList)
 {
-   
+    char tempchar = usr_command[0][0];
+    cout << tempchar;
+    switch (tempchar)
+    {
+    default:
+        break;
+    }
 
 }
 

@@ -98,13 +98,18 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
     switch (tempchar){
 
     case 'M':
+    {
         init_size = stoi(usr_command[1]);
         memoryManager(init_size, FRAMESIZE, freeFrameList);
         break;
+    }
+        
     case 'A':
+    {
         alloc_size = stoi(usr_command[1]);
         int a = allocate(alloc_size, stoi(usr_command[2]), freeFrameList, processSize);
         break;
+    }
     case 'W':
         int w = write(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
@@ -194,7 +199,7 @@ int deallocate(int pid, int & alloc_size, int & init_size,vector<int>& freeFrame
             process_list[pid].pageTable[m] = 0;
         }
 
-        delete process_list[pid].pageTable;
+        //delete process_list[pid].pageTable;
 
         for (int n = 0; n < init_size; n++)
             process_list[pid].pageTable[n] = 0;

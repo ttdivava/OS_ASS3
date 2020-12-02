@@ -128,9 +128,11 @@ void memoryManager(int memSize, int frameSize, vector<int>& freeFrameList) {
         }
 
     }
-
-
-
+    //initilasing memory with '0'
+    for (int i = 0; i < memSize; i++)
+        memory[i] = '0';
+    for (int i = 0; i < memSize; i++)
+        freeFrameList.push_back(i);
 }
 
 /******************************************************************************

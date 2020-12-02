@@ -56,7 +56,8 @@ int main()
         menu(usr_input, usr_command);
         runner(usr_command, freeFrameList, init_size, alloc_size, processSize);
     }
-
+    delete memory;
+    return 0;
 }
 
 void initializeProcessList() {
@@ -92,22 +93,22 @@ void menu(string& usr_input, vector<string> &usr_command){
     }
 }
 
-void convertUpper(string& data) {
 
-    for (int i = 0; data[i] != '\0'; i++) {
-        data[i] = toupper(data[i]);
-    }
-}
 
 void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_size, int& alloc_size, int * processSize)
 {
-    convertUpper(usr_command[0]);
+
     char tempchar = usr_command[0][0];
-    cout << tempchar;
+    tempchar = toupper(tempchar);
     switch (tempchar){
 
     case 'M':
     {
+        if (usr_command.size() == 1)
+        {
+            cout << "Error, Please enter a Value, Eg. M 4" << endl;
+            main();
+        }
         init_size = stoi(usr_command[1]);
         memoryManager(init_size, FRAMESIZE, freeFrameList);
         break;
@@ -115,22 +116,40 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
         
     case 'A':
     {
+        if (usr_command.size() < 3 || usr_command.size() > 3)
+        {
+            cout << "Error, Please enter a Value, Eg. A 4 5" << endl;
+            main();
+        }
         alloc_size = stoi(usr_command[1]);
         int a = allocate(alloc_size, stoi(usr_command[2]), freeFrameList, processSize);
         break;
     }
     case 'W':
-    {
+    {   if (usr_command.size() < 3 || usr_command.size() > 3)
+        {
+            cout << "Error, Please enter a Value, Eg. W 4 5" << endl;
+            main();
+        }
         int w = write(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
     }
     case 'R':
-    {
+    {   if (usr_command.size() < 3 || usr_command.size() > 3)
+         {
+        cout << "Error, Please enter a Value, Eg. R 4 5" << endl;
+        main();
+         }
         int r = read(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
     }
     case 'D':
-    {
+
+    {   if (usr_command.size() == 1)
+         {
+        cout << "Error, Please enter a Value, Eg. M 4" << endl;
+        main();
+         }
         int d = deallocate(stoi(usr_command[1]), alloc_size, init_size, freeFrameList);
         break;
     }

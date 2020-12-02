@@ -111,22 +111,29 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
         break;
     }
     case 'W':
+    {
         int w = write(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
+    }
     case 'R':
+    {
         int r = read(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
+    }
     case 'D':
+    {
         int d = deallocate(stoi(usr_command[1]), alloc_size, init_size, freeFrameList);
         break;
-    case 'P':
+    }
+    case 'P': 
+    {
         printMemory(init_size, freeFrameList, processSize);
         break;
+    }
     default:
         cout << "Invalid commands" << endl;
         break;
     }
-
 }
 
 
@@ -236,17 +243,18 @@ int read(int pid, int logical_address)
 
 void printMemory(int init_size, vector<int>& freeFrameList, int * processSize)
 {
-    cout << "Memory: " << endl;
+    cout << endl <<"Memory: " << endl;
     for (int i = 0; i < init_size; i++) {
         cout << memory[i] << setw(5);
     }
     int count = 0;
     cout << endl;
 
-    cout << "FreeFrame List:" << endl;
+    cout << endl <<"FreeFrame List:" << endl;
     for (auto i = freeFrameList.begin(); i != freeFrameList.end(); i++)
         cout << *i << setw(5);
 
+    cout << endl << "Process List:" << endl;
     for (int i = 0; i < 10; i++)
         if (processSize[i] != -1)
             cout << i << setw(5) << processSize[i] << endl;

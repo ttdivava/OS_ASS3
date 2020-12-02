@@ -75,15 +75,16 @@ void menu(string& usr_input, vector<string> &usr_command){
     cout << "List of the command is as following";
     cout << "**********************" << endl;
     //menu display
-    cout << "1. M memorySize frameSize" 
+    cout << "1. M memorySize" 
          << endl << "2. A sizepid" 
-         << endl << "3. W" 
-         << endl << "4. R" 
-         << endl << "5. D" 
-         << endl << "6. P" 
+         << endl << "3. W -Write" 
+         << endl << "4. R -Read" 
+         << endl << "5. D -Deallocate " 
+         << endl << "6. P -print" 
          << endl << "7. exit";
     cout << endl << "Please enter the command:";
     getline(cin, usr_input);
+
     stringstream temp(usr_input);
     usr_command.clear();
     while (temp >> buffer) {
@@ -182,21 +183,24 @@ int allocate(int allocSize, int pid, vector<int>& freeFrameList, int * processSi
         random_index;
 
     srand(time(NULL));
+    if (freeFrameList.size() >= allocSize) {
+        for (int i = 0; i < allocSize; i++) {
+            random_index = rand() % freeFrameList.size();
+            random_value = freeFrameList[random_index];
 
-    for (int i = 0; i < allocSize; i++) {
-        random_index = rand() % freeFrameList.size();
-        random_value = freeFrameList[random_index];
+            process_list[pid].pageTable[i] = random_value;
 
-        process_list[pid].pageTable[i] = random_value;
+            freeFrameList.erase(remove(freeFrameList.begin(), freeFrameList.end(), random_value), freeFrameList.end());
 
-        freeFrameList.erase(remove(freeFrameList.begin(), freeFrameList.end(), random_value), freeFrameList.end());
-
+        }
+        processSize[pid] = allocSize;
+        // the return is 1 if a requested memory space has been successfully  allocated 
+        // if not it returns -1
+        return 1;
     }
-    processSize[pid] = allocSize;
-    // the return is 1 if a requested memory space has been successfully  allocated 
-    // if not it returns -1
-    return 1;
-  
+    else {
+        return -1;
+    }
 }
 
 int deallocate(int pid, int & alloc_size, int & init_size,vector<int>& freeFrameList)

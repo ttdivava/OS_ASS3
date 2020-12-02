@@ -92,8 +92,16 @@ void menu(string& usr_input, vector<string> &usr_command){
     }
 }
 
+void convertUpper(string& data) {
+
+    for (int i = 0; data[i] != '\0'; i++) {
+        data[i] = toupper(data[i]);
+    }
+}
+
 void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_size, int& alloc_size, int * processSize)
 {
+    convertUpper(usr_command[0]);
     char tempchar = usr_command[0][0];
     cout << tempchar;
     switch (tempchar){

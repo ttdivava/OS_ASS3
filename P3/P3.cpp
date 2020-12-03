@@ -6,7 +6,6 @@
 *** DUE DATE : 		11/25/2020													   						  ***
 *** INSTRUCTOR :    Kwanghee Won																		  ***
 *************************************************************************************************************
-*** DESCRIPTION :  	In this assignement, The program 													  ***
 ************************************************************************************************************/
 #include <iostream> 
 #include <iomanip>
@@ -27,8 +26,9 @@ int deallocate(int pid, int& alloc_size, int& init_size, vector<int>& freeFrameL
 int write(int pid, int logical_address);
 int read(int pid, int logical_address);
 void printMemory(int init_size, vector<int>& freeFrameList, int* processSize);
-void menu(string& usr_input, vector<string>& usr_command);
+void menu(vector<string>& usr_command);
 void runner(vector<string>& usr_command, vector<int>& freeFrameList,int & init_size, int & alloc_size, int *);
+void looper(vector<string>& usr_command, vector<int>& freeFrameList, int& init_size, int& alloc_size, int*);
 
 struct Page_table
 {
@@ -36,6 +36,7 @@ struct Page_table
 };
 
 //global variables
+string usr_input = "";
 string buffer;
 char* memory;
 const int FRAMESIZE = 1;
@@ -44,7 +45,6 @@ map <int, Page_table> process_list;
 
 int main()
 {
-    string usr_input = "";
     int init_size = 0;
     int alloc_size = 0;
     //string process_list[20];
@@ -52,12 +52,21 @@ int main()
     vector<int>freeFrameList;
     int processSize[10] = {-1};
 
-    while (usr_input != "exit") {
-        menu(usr_input, usr_command);
-        runner(usr_command, freeFrameList, init_size, alloc_size, processSize);
-    }
+    looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
+    cout << "Thanks for using the program." << endl;
     delete memory;
     return 0;
+}
+
+void looper(vector<string>& usr_command, vector<int>& freeFrameList, int& init_size, int& alloc_size, int* processSize) {
+    
+    while (usr_input != "exit") {
+        menu(usr_command);
+        if (usr_input != "exit") {
+            runner(usr_command, freeFrameList, init_size, alloc_size, processSize);
+        }
+    }
+
 }
 
 void initializeProcessList() {
@@ -70,7 +79,7 @@ void initializeProcessList() {
      //   cout << p.first;
 }
 
-void menu(string& usr_input, vector<string> &usr_command){
+void menu(vector<string> &usr_command){
     
     cout << "*********************";
     cout << "List of the command is as following";
@@ -104,10 +113,10 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
 
     case 'M':
     {
-        if (usr_command.size() == 1)
+        if (usr_command.size() < 2 || usr_command.size() > 2)
         {
             cout << "Error, Please enter a Value, Eg. M 4" << endl;
-            main();
+            looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
         }
         init_size = stoi(usr_command[1]);
         memoryManager(init_size, FRAMESIZE, freeFrameList);
@@ -119,7 +128,7 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
         if (usr_command.size() < 3 || usr_command.size() > 3)
         {
             cout << "Error, Please enter a Value, Eg. A 4 5" << endl;
-            main();
+            looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
         }
         alloc_size = stoi(usr_command[1]);
         int a = allocate(alloc_size, stoi(usr_command[2]), freeFrameList, processSize);
@@ -129,7 +138,7 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
     {   if (usr_command.size() < 3 || usr_command.size() > 3)
         {
             cout << "Error, Please enter a Value, Eg. W 4 5" << endl;
-            main();
+            looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
         }
         int w = write(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
@@ -138,17 +147,17 @@ void runner(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
     {   if (usr_command.size() < 3 || usr_command.size() > 3)
          {
         cout << "Error, Please enter a Value, Eg. R 4 5" << endl;
-        main();
+        looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
          }
         int r = read(stoi(usr_command[1]), stoi(usr_command[2]));
         break;
     }
     case 'D':
 
-    {   if (usr_command.size() == 1)
+    {   if (usr_command.size() < 2 || usr_command.size() > 2)
          {
-        cout << "Error, Please enter a Value, Eg. M 4" << endl;
-        main();
+        cout << "Error, Please enter a Value, Eg. D 4" << endl;
+        looper(usr_command, freeFrameList, init_size, alloc_size, processSize);
          }
         int d = deallocate(stoi(usr_command[1]), alloc_size, init_size, freeFrameList);
         break;

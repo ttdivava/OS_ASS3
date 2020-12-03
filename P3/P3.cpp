@@ -40,7 +40,7 @@ string usr_input = "";
 string buffer;
 char* memory;
 const int FRAMESIZE = 1;
-map <int, Page_table> process_list;
+map <pid_t, Page_table> process_list;
 
 
 int main()
@@ -72,7 +72,7 @@ void looper(vector<string>& usr_command, vector<int>& freeFrameList, int& init_s
 void initializeProcessList() {
     Page_table x = {0};
     for (int i = 0; i < 10; i++) {
-        process_list.insert(pair<int, Page_table> (i,x));
+        process_list.insert(pair<pid_t, Page_table> (i,x));
     }
 
    // for (auto p = process_list.begin(); p != process_list.end(); ++p)
